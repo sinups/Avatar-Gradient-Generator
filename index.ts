@@ -1,4 +1,4 @@
-const useAvatarGradient = () => {
+const useAvatarGradient = (input: string) => {
   const predefinedGradients = [
     ["#65aadd1a", "#65aadd"],
     ["#e170761a", "#e17076"],
@@ -10,26 +10,37 @@ const useAvatarGradient = () => {
   ];
 
   const stringToIndex = (s: string): number => {
-    if (!s) {
+    if (typeof s !== "string") {
+      throw new Error("Input must be a string");
+    }
+
+    if (s.trim() === "") {
       return 0;
     }
-    const hash = s.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+
+    const hash = Array.from(s).reduce(
+      (acc, char) => acc + char.charCodeAt(0),
+      0
+    );
     return hash % predefinedGradients.length;
   };
 
-  const generateCSSGradient = (s: string): string => {
+  const generateCSSGradient = (): string => {
     try {
-      const index = stringToIndex(s);
+      const index = stringToIndex(input);
       const [c1, c2] = predefinedGradients[index];
 
       return `linear-gradient(${c1} -125%, ${c2})`;
     } catch (error) {
-      console.error("An error occurred while generating CSS gradient:", error);
+      console.error(
+        "It is necessary to send parameter to the function:",
+        error
+      );
       return "linear-gradient(rgb(255, 255, 255) -125%, rgb(158, 170, 181))";
     }
   };
 
-  return { generateCSSGradient };
+  return generateCSSGradient();
 };
 
 export default useAvatarGradient;

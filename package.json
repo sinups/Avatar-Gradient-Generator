@@ -1,7 +1,7 @@
 {
   "name": "@sinups/agg",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Avatar Gradient Generator",
   "type": "module",
   "scripts": {

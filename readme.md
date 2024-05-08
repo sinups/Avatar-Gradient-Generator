@@ -1,25 +1,25 @@
 > Avatar Gradient Generator
 
-## Install
+## Установка
 
 ```
 $ npm i @sinups/agg
-import useAvatarGradient from '@sinups/agg';
 ```
 
-## Usage
+## Использование
 
 ```js
- const { generateCSSGradient } = useAvatarGradient();
- const AvatarGradient = generateCSSGradient(user?.Id?.toString() ?? '');
- style={{
+import useAvatarGradient from '@sinups/agg';
+const AvatarGradient = useAvatarGradient(user?.Id?.toString() ?? '');
+style={{
     background: `${AvatarGradient}`,
  }}
 ```
-### Fn Param 
+### Параметр функции
 
 #### string
 
-Type: `string`<br/>
-Required
+- Тип: `string`
+- Обязателен: Да
 
+Желательно использовать ID пользователя
