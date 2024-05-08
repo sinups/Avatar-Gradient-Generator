@@ -23,3 +23,7 @@ style={{
 - Обязателен: Да
 
 Желательно использовать ID пользователя
+
+### TS
+agg.d.ts
+declare module '@sinups/agg';
