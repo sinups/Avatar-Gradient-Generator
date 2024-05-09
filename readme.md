@@ -27,3 +27,4 @@ style={{
 ### TS
 agg.d.ts
 declare module '@sinups/agg';
+

@@ -1,20 +1,7 @@
-const useAvatarGradient = require('../index').default;
+import { predefinedGradients } from '../src/gradients';
+import useAvatarGradient from '../src/index';
 
 describe('useAvatarGradient', () => {
-	const predefinedGradients = [
-		["#65aadd1a", "#65aadd"],
-		["#e170761a", "#e17076"],
-		["#faa7741a", "#faa774"],
-		["#a695e71a", "#a695e7"],
-		["#7bc8621a", "#7bc862"],
-		["#6ec9cb1a", "#6ec9cb"],
-		["#ee7aae1a", "#ee7aae"],
-	];
-
-	const getGradientForInput = (input) => {
-		const index = input.length % predefinedGradients.length;
-		return predefinedGradients[index];
-	};
 
 	it('should return the same gradient for the same input string', () => {
 		const input = '12345';
@@ -42,7 +29,7 @@ describe('useAvatarGradient', () => {
 
 	it('should handle minimum and maximum user IDs', () => {
 		const minUserId = 1;
-		const maxUserId = 150000; 
+		const maxUserId = 150000;
 		const minResult = useAvatarGradient(minUserId.toString());
 		const maxResult = useAvatarGradient(maxUserId.toString());
 		expect(minResult).toBeDefined();
