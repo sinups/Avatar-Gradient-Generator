@@ -1,9 +1,9 @@
 export const predefinedGradients = [
-  ['#65aadd1a', '#65aadd'],
-  ['#e170761a', '#e17076'],
-  ['#faa7741a', '#faa774'],
-  ['#a695e71a', '#a695e7'],
-  ['#7bc8621a', '#7bc862'],
-  ['#6ec9cb1a', '#6ec9cb'],
-  ['#ee7aae1a', '#ee7aae'],
+  ['#65aadd', '#65aadd'],
+  ['#e17076', '#e17076'],
+  ['#faa774', '#faa774'],
+  ['#a695e7', '#a695e7'],
+  ['#7bc862', '#7bc862'],
+  ['#6ec9cb', '#6ec9cb'],
+  ['#ee7aae', '#ee7aae'],
 ];
