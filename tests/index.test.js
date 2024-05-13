@@ -14,7 +14,7 @@ describe('useAvatarGradient', () => {
 	it('should handle empty string input return default', () => {
 		const input = '';
 		const [c1, c2] = predefinedGradients[0];
-		const expected = `linear-gradient(${c1} -125%, ${c2})`;
+		const expected = `linear-gradient(${c1} -125%, ${c2}) #ffffff`;
 
 		const result = useAvatarGradient(input);
 		expect(result).toBe(expected);
