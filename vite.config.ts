@@ -17,9 +17,19 @@ export default defineConfig(() => ({
       }),
     }),
   ],
+//   build: {
+//     lib: {
+//       entry: resolve('lib', 'index.ts'),
+//       name: 'avatar-gradient-generator',
+//       fileName: (format) => `agg.${format}.js`,
+//     },
+//     rollupOptions: {
+//       external: ['react'],
+//     },
+//   },
   build: {
     lib: {
-      entry: resolve('lib', 'index.ts'),
+      entry: 'lib/index.ts',
       name: 'avatar-gradient-generator',
       fileName: (format) => `agg.${format}.js`,
     },
