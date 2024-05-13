@@ -1,16 +1,30 @@
 import react from '@vitejs/plugin-react';
-import path from 'path';
+import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
+import dts from 'vite-plugin-dts';
+import tsConfigPaths from 'vite-tsconfig-paths';
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react(), cssInjectedByJsPlugin()],
+export default defineConfig(() => ({
+  plugins: [
+    react(),
+    tsConfigPaths(),
+
+    dts({
+      include: ['lib/index.ts'],
+      beforeWriteFile: (filePath, content) => ({
+        filePath: filePath.replace('/lib', ''),
+        content,
+      }),
+    }),
+  ],
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/index.ts'),
+      entry: resolve('lib', 'index.ts'),
       name: 'avatar-gradient-generator',
-      fileName: 'index',
+      fileName: (format) => `agg.${format}.js`,
+    },
+    rollupOptions: {
+      external: ['react'],
     },
   },
-});
+}));

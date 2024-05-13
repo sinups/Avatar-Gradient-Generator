@@ -6,22 +6,22 @@ const n = [
   ["#7bc862", "#7bc862"],
   ["#6ec9cb", "#6ec9cb"],
   ["#ee7aae", "#ee7aae"]
-], i = (a) => {
+], d = (a) => {
   if (typeof a != "string")
     throw new Error("Input must be a string");
   const c = (e) => e.trim() === "" ? 0 : Array.from(e).reduce(
-    (r, o) => r + o.charCodeAt(0),
+    (r, f) => r + f.charCodeAt(0),
     0
   ) % n.length;
   return (() => {
     try {
       const e = c(a), [t, r] = n[e];
-      return `linear-gradient(${t} -125%, ${r})`;
+      return `linear-gradient(${t} -125%, ${r}) #ffffff`;
     } catch (e) {
-      return console.error("Error generating CSS gradient:", e), "linear-gradient(rgb(255, 255, 255) -125%, rgb(158, 170, 181))";
+      return console.error("Error generating CSS gradient:", e), "linear-gradient(rgb(255, 255, 255) -125%, rgb(158, 170, 181)) #ffffff";
     }
   })();
 };
 export {
-  i as default
+  d as default
 };

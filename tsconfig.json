@@ -6,22 +6,22 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
-
-    /* Bundler mode */
     "moduleResolution": "Node",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-
-    /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+
+    "paths": {
+      "@sinups/agg": ["./lib/index.ts"]
+    }
   },
-  "include": ["src"],
+  "include": ["./src", "./lib"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
-// need to delete this comment
