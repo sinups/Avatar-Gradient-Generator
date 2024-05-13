@@ -21,10 +21,10 @@ const useAvatarGradient = (input: string) => {
       const index = stringToIndex(input);
       const [c1, c2] = predefinedGradients[index];
 
-      return `linear-gradient(${c1} -125%, ${c2})`;
+      return `linear-gradient(${c1} -125%, ${c2}) #ffffff`;
     } catch (error) {
       console.error('Error generating CSS gradient:', error);
-      return 'linear-gradient(rgb(255, 255, 255) -125%, rgb(158, 170, 181))';
+      return 'linear-gradient(rgb(255, 255, 255) -125%, rgb(158, 170, 181)) #ffffff';
     }
   };
 
