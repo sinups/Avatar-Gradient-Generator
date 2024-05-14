@@ -1,7 +1,7 @@
 import useAvatarGradient from '@sinups/agg';
 
 function App() {
-  const AvatarGradient = useAvatarGradient('33');
+  const AvatarGradient = useAvatarGradient('1');
   return (
     <div className="App">
       <code>{AvatarGradient}</code>
