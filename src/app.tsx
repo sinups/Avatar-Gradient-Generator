@@ -1,20 +1,14 @@
-import useAvatarGradient from '@sinups/agg';
+import { MantineProvider } from '@mantine/core';
 
-function App() {
-  const AvatarGradient = useAvatarGradient('1');
+import Demo from './demo';
+import { theme } from './theme';
+
+import '@mantine/core/styles.css';
+
+export default function App() {
   return (
-    <div className="App">
-      <code>{AvatarGradient}</code>
-      <div
-        style={{
-          background: AvatarGradient,
-          width: '100px',
-          height: '100px',
-          borderRadius: '50%',
-        }}
-      ></div>
-    </div>
+    <MantineProvider theme={theme}>
+      <Demo />
+    </MantineProvider>
   );
 }
-
-export default App;
