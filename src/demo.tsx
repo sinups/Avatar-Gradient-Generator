@@ -1,13 +1,17 @@
-import { Avatar, Divider, Group, Stack, Text } from '@mantine/core';
-import useAvatarGradient from '@sinups/agg';
+// import { Avatar, Divider, Group, Stack } from '@mantine/core';
+// import useAvatarGradient from '@sinups/agg';
+
+import configurator from './components/Randomizer/Configurator';
+import { renderDemo } from './render-demo';
 
 import classes from './styles.module.css';
 
+const ConfiguratorDemo = renderDemo(configurator);
+
 function Demo() {
-  //   const AvatarGradient = useAvatarGradient('2222');
   return (
     <div className={classes.root}>
-      <Divider size="md" label="Available options" labelPosition="center" />
+      {/* <Divider size="md" label="Available options" labelPosition="center" />
       <Stack h={300} align="center" justify="center" gap="lg" px={'40px'}>
         <Group>
           {['1', '2', '3', '4', '5', '6', '7'].map((variant) => (
@@ -25,18 +29,8 @@ function Demo() {
             </Avatar>
           ))}
         </Group>
-      </Stack>
-      {/* <div className="demo">
-        <code>{AvatarGradient}</code>
-        <div
-          style={{
-            background: AvatarGradient,
-            width: '100px',
-            height: '100px',
-            borderRadius: '50%',
-          }}
-        ></div>
-      </div> */}
+      </Stack> */}
+      <ConfiguratorDemo />
     </div>
   );
 }

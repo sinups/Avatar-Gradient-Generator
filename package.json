@@ -35,6 +35,7 @@
   "dependencies": {
     "@mantine/core": "^7.9.1",
     "@mantine/hooks": "^7.9.1",
+    "@mantinex/demo": "^1.1.1",
     "path": "^0.12.7",
     "prettier": "^2.3.2",
     "react": "^18.2.0",
