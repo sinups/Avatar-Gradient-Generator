@@ -7,11 +7,9 @@ import {
   Code,
   Group,
   Modal,
-  Select,
   Slider,
   Switch,
   Text,
-  TextInput,
 } from '@mantine/core';
 import useAvatarGradient from '@sinups/agg';
 
@@ -36,16 +34,13 @@ const GradientSwatch = ({ gradient, onClick }) => (
 );
 
 const AvatarDemo = () => {
-  const [variant, setVariant] = useState('filled');
-  const [size, setSize] = useState(128); // Mantine's "xl" size
-  const [radius, setRadius] = useState(100); // Mantine's "xl" radius
+  const [size, setSize] = useState(128);
+  const [radius, setRadius] = useState(100);
   const [color, setColor] = useState('#228be6');
   const [src, setSrc] = useState('');
   const [useSrc, setUseSrc] = useState(false);
   const [codeModalOpened, setCodeModalOpened] = useState(false);
   const [avatarId, setAvatarId] = useState('1');
-
-  const variants = ['filled', 'outline', 'gradient'];
 
   const randomizeAvatarId = () => {
     const randomId = Math.floor(Math.random() * 150000) + 1;
@@ -101,22 +96,15 @@ function Demo() {
             {!useSrc && 'AK'}
           </Avatar>
           <Text mt="sm">
-            ID: {avatarId}
-            BG: <code>{useAvatarGradient(avatarId)}</code>
+            <div> ID: {avatarId}</div>
+            <div>
+              BG: <code>{useAvatarGradient(avatarId)}</code>
+            </div>
           </Text>
         </Box>
 
         <Box mt="md">
           <Button onClick={randomizeAvatarId}>Randomize Avatar</Button>
-        </Box>
-
-        <Box mt="md">
-          <Select
-            label="Variant"
-            value={variant}
-            onChange={(value) => setVariant(value)}
-            data={variants}
-          />
         </Box>
 
         <Box mt="md">
@@ -161,17 +149,6 @@ function Demo() {
             onChange={(event) => setUseSrc(event.currentTarget.checked)}
           />
         </Box>
-
-        {useSrc && (
-          <Box mt="md">
-            <TextInput
-              label="Image URL"
-              placeholder="Enter image URL"
-              value={src}
-              onChange={(e) => setSrc(e.target.value)}
-            />
-          </Box>
-        )}
 
         <Box mt="md">
           <Button onClick={() => setCodeModalOpened(true)}>Show Code</Button>
