@@ -49,14 +49,12 @@ const AvatarDemo = () => {
   };
 
   const code = `
-
 import { Avatar } from '@mantine/core';
 import useAvatarGradient from '@sinups/agg';
 
 function Demo() {
-  return <Avatar variant="filled" radius="sm" src=""  gradient={useAvatarGradient(userId)} > AK </Avatar>;
+  return <Avatar variant="filled" radius="sm" src="" gradient={useAvatarGradient(userId)} > AK </Avatar>;
 }
-
 `;
 
   const avatarPreviewStyle = {
@@ -83,7 +81,6 @@ function Demo() {
         <Box style={avatarPreviewStyle}>
           <Avatar
             src={useSrc ? src || defaultImageUrl : ''}
-            // variant={variant}
             size={size}
             color={'#fff'}
             radius={radius}
@@ -96,7 +93,7 @@ function Demo() {
             {!useSrc && 'AK'}
           </Avatar>
           <Text mt="sm">
-            <div> ID: {avatarId}</div>
+            <div>ID: {avatarId}</div>
             <div>
               BG: <code>{useAvatarGradient(avatarId)}</code>
             </div>
@@ -136,7 +133,10 @@ function Demo() {
               <GradientSwatch
                 key={str}
                 gradient={useAvatarGradient(str)}
-                onClick={() => setColor(useAvatarGradient(str))}
+                onClick={() => {
+                  setAvatarId(str);
+                  setColor(useAvatarGradient(str));
+                }}
               />
             ))}
           </Group>
