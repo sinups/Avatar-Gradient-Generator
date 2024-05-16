@@ -1,12 +1,12 @@
 {
   "name": "@sinups/agg",
   "private": false,
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "Avatar Gradient Generator",
   "type": "module",
   "main": "./dist/agg.umd.js",
   "module": "./dist/agg.es.js",
-  "types": "./dist/lib/main.d.ts",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "start": "vite",
     "build": "vite build",
