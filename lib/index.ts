@@ -4,6 +4,7 @@ const useAvatarGradient = (input: string) => {
   if (typeof input !== 'string') {
     throw new Error('Input must be a string');
   }
+
   const stringToIndex = (s: string): number => {
     if (s.trim() === '') {
       return 0;
@@ -20,11 +21,10 @@ const useAvatarGradient = (input: string) => {
     try {
       const index = stringToIndex(input);
       const [c1, c2] = predefinedGradients[index];
-
       return `linear-gradient(${c1} -125%, ${c2}) #ffffff`;
     } catch (error) {
       console.error('Error generating CSS gradient:', error);
-      return 'linear-gradient(rgb(255, 255, 255) -125%, rgb(158, 170, 181)) #ffffff';
+      return 'linear-gradient(rgba(255, 255, 255, 0.1) -125%, rgb(158, 170, 181)) #ffffff';
     }
   };
 
