@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [react()],
+  base: '/Avatar-Gradient-Generator/',
   build: {
     outDir: 'build',
   },
