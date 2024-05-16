@@ -7,7 +7,6 @@ import {
   Code,
   Group,
   Modal,
-  Slider,
   Switch,
   Text,
 } from '@mantine/core';
@@ -19,7 +18,7 @@ const defaultImageUrl =
   'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80';
 
 // Custom component to display gradient swatches
-const GradientSwatch = ({ gradient, onClick }) => (
+const GradientSwatch = ({ gradient, onClick, isSelected }) => (
   <Box
     onClick={onClick}
     style={{
@@ -28,7 +27,7 @@ const GradientSwatch = ({ gradient, onClick }) => (
       width: 40,
       height: 40,
       borderRadius: '50%',
-      border: '1px solid #ccc',
+      border: isSelected ? '3px solid #000' : '1px solid #ccc',
     }}
   />
 );
@@ -41,11 +40,18 @@ const AvatarDemo = () => {
   const [useSrc, setUseSrc] = useState(false);
   const [codeModalOpened, setCodeModalOpened] = useState(false);
   const [avatarId, setAvatarId] = useState('1');
-
+  const [manualId, setManualId] = useState('');
+  const [useManualId, setUseManualId] = useState(false);
   const randomizeAvatarId = () => {
     const randomId = Math.floor(Math.random() * 150000) + 1;
     setAvatarId(randomId.toString());
     setColor(useAvatarGradient(randomId.toString()));
+  };
+
+  const handleIdChange = (event) => {
+    setManualId(event.target.value);
+    setAvatarId(event.target.value);
+    setColor(useAvatarGradient(event.target.value));
   };
 
   const code = `
@@ -105,28 +111,6 @@ function Demo() {
         </Box>
 
         <Box mt="md">
-          <Slider
-            label="Radius"
-            value={radius}
-            onChange={setRadius}
-            min={0}
-            max={100}
-            step={1}
-          />
-        </Box>
-
-        <Box mt="md">
-          <Slider
-            label="Size"
-            value={size}
-            onChange={setSize}
-            min={16}
-            max={128}
-            step={1}
-          />
-        </Box>
-
-        <Box mt="md">
           <label>Color</label>
           <Group spacing="xs">
             {fixedStrings.map((str) => (
@@ -137,6 +121,7 @@ function Demo() {
                   setAvatarId(str);
                   setColor(useAvatarGradient(str));
                 }}
+                isSelected={str === avatarId}
               />
             ))}
           </Group>
