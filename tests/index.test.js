@@ -1,5 +1,5 @@
-import { predefinedGradients } from '../src/gradients';
-import useAvatarGradient from '../src/index';
+import { predefinedGradients } from '../lib/gradients';
+import useAvatarGradient from '../lib/index';
 
 describe('useAvatarGradient', () => {
 
