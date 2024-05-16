@@ -1,4 +1,7 @@
 > Avatar Gradient Generator
+### Demo
+
+https://sinups.github.io/Avatar-Gradient-Generator
 
 ## Установка
 
