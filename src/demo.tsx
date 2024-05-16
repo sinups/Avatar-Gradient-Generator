@@ -98,11 +98,9 @@ function Demo() {
           >
             {!useSrc && 'AK'}
           </Avatar>
+          <Text mt="sm">ID: {avatarId}</Text>{' '}
           <Text mt="sm">
-            <div>ID: {avatarId}</div>
-            <div>
-              BG: <code>{useAvatarGradient(avatarId)}</code>
-            </div>
+            BG: <code>{useAvatarGradient(avatarId)}</code>
           </Text>
         </Box>
 
