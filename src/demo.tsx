@@ -6,6 +6,7 @@ import {
   Button,
   Code,
   Group,
+  Input,
   Modal,
   Switch,
   Text,
@@ -27,31 +28,27 @@ const GradientSwatch = ({ gradient, onClick, isSelected }) => (
       width: 40,
       height: 40,
       borderRadius: '50%',
-      border: isSelected ? '3px solid #000' : '1px solid #ccc',
+      border: isSelected ? '3px solid #2196f3' : '1px solid #ccc',
     }}
   />
 );
 
 const AvatarDemo = () => {
-  const [size, setSize] = useState(128);
-  const [radius, setRadius] = useState(100);
-  const [color, setColor] = useState('#228be6');
   const [src, setSrc] = useState('');
   const [useSrc, setUseSrc] = useState(false);
   const [codeModalOpened, setCodeModalOpened] = useState(false);
   const [avatarId, setAvatarId] = useState('1');
-  const [manualId, setManualId] = useState('');
   const [useManualId, setUseManualId] = useState(false);
+  const [manualId, setManualId] = useState('');
+
   const randomizeAvatarId = () => {
     const randomId = Math.floor(Math.random() * 150000) + 1;
     setAvatarId(randomId.toString());
-    setColor(useAvatarGradient(randomId.toString()));
   };
 
-  const handleIdChange = (event) => {
+  const handleManualIdChange = (event) => {
     setManualId(event.target.value);
     setAvatarId(event.target.value);
-    setColor(useAvatarGradient(event.target.value));
   };
 
   const code = `
@@ -59,7 +56,7 @@ import { Avatar } from '@mantine/core';
 import useAvatarGradient from '@sinups/agg';
 
 function Demo() {
-  return <Avatar variant="filled" radius="sm" src="" gradient={useAvatarGradient(userId)} > AK </Avatar>;
+  return <Avatar gradient={useAvatarGradient(userId)} > AK </Avatar>;
 }
 `;
 
@@ -87,9 +84,9 @@ function Demo() {
         <Box style={avatarPreviewStyle}>
           <Avatar
             src={useSrc ? src || defaultImageUrl : ''}
-            size={size}
+            size={'xl'}
             color={'#fff'}
-            radius={radius}
+            radius={'50%'}
             style={{
               cursor: 'pointer',
               background: `${useAvatarGradient(avatarId)}`,
@@ -110,15 +107,12 @@ function Demo() {
 
         <Box mt="md">
           <label>Color</label>
-          <Group spacing="xs">
+          <Group>
             {fixedStrings.map((str) => (
               <GradientSwatch
                 key={str}
                 gradient={useAvatarGradient(str)}
-                onClick={() => {
-                  setAvatarId(str);
-                  setColor(useAvatarGradient(str));
-                }}
+                onClick={() => setAvatarId(str)}
                 isSelected={str === avatarId}
               />
             ))}
@@ -131,6 +125,22 @@ function Demo() {
             checked={useSrc}
             onChange={(event) => setUseSrc(event.currentTarget.checked)}
           />
+        </Box>
+
+        <Box mt="md">
+          <Switch
+            label="Use Manual ID"
+            checked={useManualId}
+            onChange={(event) => setUseManualId(event.currentTarget.checked)}
+          />
+          {useManualId && (
+            <Input
+              mt="sm"
+              value={manualId}
+              onChange={handleManualIdChange}
+              placeholder="Enter manual ID"
+            />
+          )}
         </Box>
 
         <Box mt="md">
