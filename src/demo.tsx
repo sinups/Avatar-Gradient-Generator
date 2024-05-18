@@ -11,20 +11,18 @@ import {
   Switch,
   Text,
 } from '@mantine/core';
-import useAvatarGradient from '@sinups/agg';
+import { useAvatarColor, useAvatarGradient } from '@sinups/agg';
 
-// Fixed strings for predefined gradients
-const fixedStrings = ['1', '2', '3', '4', '5', '6', '7'];
 const defaultImageUrl =
   'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80';
 
-// Custom component to display gradient swatches
-const GradientSwatch = ({ gradient, onClick, isSelected }) => (
+// Custom component to display gradient or color swatches
+const Swatch = ({ style, onClick, isSelected }) => (
   <Box
     onClick={onClick}
     style={{
       cursor: 'pointer',
-      background: gradient,
+      ...style,
       width: 40,
       height: 40,
       borderRadius: '50%',
@@ -33,6 +31,22 @@ const GradientSwatch = ({ gradient, onClick, isSelected }) => (
   />
 );
 
+const gradientStrings = ['1', '2', '3', '4', '5', '6', '7'];
+const colorStrings = [
+  '41856',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '10',
+  '11',
+  '12',
+];
+
 const AvatarDemo = () => {
   const [src, setSrc] = useState('');
   const [useSrc, setUseSrc] = useState(false);
@@ -40,6 +54,7 @@ const AvatarDemo = () => {
   const [avatarId, setAvatarId] = useState('1');
   const [useManualId, setUseManualId] = useState(false);
   const [manualId, setManualId] = useState('');
+  const [useGradient, setUseGradient] = useState(false); // Default to colors
 
   const randomizeAvatarId = () => {
     const randomId = Math.floor(Math.random() * 150000) + 1;
@@ -53,12 +68,20 @@ const AvatarDemo = () => {
 
   const code = `
 import { Avatar } from '@mantine/core';
-import useAvatarGradient from '@sinups/agg';
-
+import { useAvatarColor, useAvatarGradient } from '@sinups/agg';
+// Gradient
 function Demo() {
-  return <Avatar gradient={useAvatarGradient(userId)} > AK </Avatar>;
+  return <Avatar style={{ background: useAvatarGradient(userId) }}>AK</Avatar>;
 }
+// Color
+function Demo() {
+	return <Avatar style={{ background: useAvatarColor(userId) }}>AK</Avatar>;
+  }
 `;
+
+  const avatarStyle = useGradient
+    ? useAvatarGradient(avatarId)
+    : useAvatarColor(avatarId);
 
   const avatarPreviewStyle = {
     height: 300,
@@ -70,6 +93,8 @@ function Demo() {
     '--stripe-color': '#ddd',
     border: '1px solid #ccc',
   };
+
+  const currentStrings = useGradient ? gradientStrings : colorStrings;
 
   return (
     <Box
@@ -84,20 +109,20 @@ function Demo() {
         <Box style={avatarPreviewStyle}>
           <Avatar
             src={useSrc ? src || defaultImageUrl : ''}
-            size={'xl'}
-            color={'#fff'}
-            radius={'50%'}
+            size="xl"
+            color="#fff"
+            radius="50%"
             style={{
               cursor: 'pointer',
-              background: `${useAvatarGradient(avatarId)}`,
+              background: avatarStyle,
               color: '#fff',
             }}
           >
             {!useSrc && 'AK'}
           </Avatar>
-          <Text mt="sm">ID: {avatarId}</Text>{' '}
+          <Text mt="sm">ID: {avatarId}</Text>
           <Text mt="sm">
-            BG: <code>{useAvatarGradient(avatarId)}</code>
+            BG: <code>{avatarStyle}</code>
           </Text>
         </Box>
 
@@ -106,12 +131,24 @@ function Demo() {
         </Box>
 
         <Box mt="md">
-          <label>Color</label>
+          <Switch
+            label="Use Gradient"
+            checked={useGradient}
+            onChange={(event) => setUseGradient(event.currentTarget.checked)}
+          />
+        </Box>
+
+        <Box mt="md">
+          <label>{useGradient ? 'Gradient' : 'Color'}</label>
           <Group>
-            {fixedStrings.map((str) => (
-              <GradientSwatch
+            {currentStrings.map((str) => (
+              <Swatch
                 key={str}
-                gradient={useAvatarGradient(str)}
+                style={{
+                  background: useGradient
+                    ? useAvatarGradient(str)
+                    : useAvatarColor(str),
+                }}
                 onClick={() => setAvatarId(str)}
                 isSelected={str === avatarId}
               />
@@ -149,7 +186,7 @@ function Demo() {
 
         <Modal
           opened={codeModalOpened}
-          size={'xl'}
+          size="xl"
           onClose={() => setCodeModalOpened(false)}
           title="Component Source Code"
         >

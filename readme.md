@@ -12,10 +12,18 @@ $ npm i @sinups/agg
 ## Использование
 
 ```js
-import useAvatarGradient from '@sinups/agg';
+import { useAvatarColor, useAvatarGradient } from '@sinups/agg';
+
 const AvatarGradient = useAvatarGradient(user?.Id?.toString() ?? '');
 style={{
     background: `${AvatarGradient}`,
+ }}
+
+// or
+
+const AvatarColor = useAvatarColor(user?.Id?.toString() ?? '');
+style={{
+    background: `${AvatarColor}`,
  }}
 ```
 ### Параметр функции

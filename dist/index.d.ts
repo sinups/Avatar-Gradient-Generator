@@ -1,2 +1,3 @@
 declare const useAvatarGradient: (input: string) => string;
-export default useAvatarGradient;
+declare const useAvatarColor: (input: string) => string;
+export { useAvatarGradient, useAvatarColor };
