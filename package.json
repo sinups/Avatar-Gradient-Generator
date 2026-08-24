@@ -1,7 +1,7 @@
 {
   "name": "@sinups/agg",
   "private": false,
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Avatar Gradient Generator",
   "type": "module",
   "main": "./dist/agg.umd.js",
@@ -33,17 +33,12 @@
     "agg"
   ],
   "author": "AK - @sinups",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "@mantine/core": "8.3.5",
     "@mantine/hooks": "8.3.5",
-    "path": "^0.12.7",
-    "prettier": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rollup-plugin-typescript-paths": "^1.5.0",
-    "vite-plugin-css-injected-by-js": "^3.5.0"
-  },
-  "devDependencies": {
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
